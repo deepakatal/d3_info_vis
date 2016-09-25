@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Information Visualisation Assignment 2</title>
+        <style>
+            h1 {
+            background-color:black;
+            color:white;
+            padding: 5px;
+            }
+            ul {
+            padding : 0px;
+            }
+            label{
+            font-weight: bold;
+            }
+            body {
+            margin:0;
+            }
+            #content {
+            padding-left: 5px;
+            }           
+        </style>
+        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script>
+            window.onload=function(evt){
+                     var country_name_list= d3.select("#country_list"); 
+                     d3.json("https://raw.githubusercontent.com/CristianFelix/infoviz/master/gapminder.json",
+					 function(error,result){
+							var data_to_be_added = country_name_list.selectAll("li").data(result,function(d){return d.name;});
+							data_to_be_added.enter().append("li").text(function(d){return d.name;});
+                     });
+                 };
+                 
+        </script>
+    </head>
+    <body>
+        <h1>Gapiminder-Wealth and Health of Nations</h1>
+        <div id="content">
+            <h2>Countries</h2>
+            <ul id="country_list"/>
+        </div>
+    </body>
+</html>
